@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import './game.scss';
 import { getvalue } from './home';
-import cross from "../assets/crossB.png";
-import circle from "../assets/circleB.png";
+import cross from "../assets/cross.png";
+import circle from "../assets/circle.png";
 import smallcross from '../assets/cross_small.png';
 import smallcircle from '../assets/circle_small.svg';
+import refresh from "../assets/refresh.png"
 import Board from "./game_area";
 import Square from "./Square";
 import React from 'react';
@@ -263,15 +264,15 @@ function game() {
         <div className='mob-view1'>
           <div className='header'>
             <div className="logo1">
-              <div><img src="\src\assets\cross.png" alt="" /></div>
-              <div><img src="\src\assets\circle.png" alt="" /></div>
+              <div><img src={cross} alt="" /></div>
+              <div><img src={circle} alt="" /></div>
             </div>
             <div className="pick">
               <div className='turn'>{pickvalue}<span>&nbsp;TURN</span> </div>
             </div>
             <div className="refresh">
               <div>
-                <button id='refr' onClick={() => { toggleModal() }}><img src="\src\assets\refresh.png" alt="" /></button>
+                <button id='refr' onClick={() => { toggleModal() }}><img src={refresh} alt="" /></button>
               </div>
             </div>
           </div>
@@ -327,7 +328,7 @@ function game() {
             {!!winner && winner === symbolcpu && (
               <>
                 <h2 className='result-text'>YOU LOST!</h2>
-                <div className='result-box'>{pickvalue}<span className='round'>&nbsp;TAKES THE ROUND</span></div>
+                <div className='result-box'>{othervalue}<span className='round'>&nbsp;TAKES THE ROUND</span></div>
               </>
             )}
             {winner == "tie" && (
