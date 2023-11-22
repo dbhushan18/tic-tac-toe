@@ -3,6 +3,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import cross from "../assets/cross.png";
 import circle from "../assets/circle.png";
+import crossW from "../assets/white_cross.png";
+import circleW from "../assets/black_circle.png";
 import './home.scss'
 import { useNavigate } from 'react-router-dom';
 
@@ -81,10 +83,10 @@ function home() {
                             <h1>PICK PLAYER</h1>
                             <div className='pick'>
                                 <button value="cross" onClick={pickUser}>
-                                    <img src="src\assets\white_cross.png" alt="" /></button>
+                                    <img src={crossW} alt="" /></button>
 
                                 <button value="circle" id='circle' onClick={pickUser}>
-                                    <img src="\src\assets\black_circle.png" alt="" /></button>
+                                    <img src="{circleW}" alt="" /></button>
                             </div>
                         </div>
 
