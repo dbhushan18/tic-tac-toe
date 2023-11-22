@@ -83,10 +83,10 @@ function home() {
                             <h1>PICK PLAYER</h1>
                             <div className='pick'>
                                 <button value="cross" onClick={pickUser}>
-                                    <img src={crossW} alt="" /></button>
+                                    <img src={crossW} alt="cross" /></button>
 
                                 <button value="circle" id='circle' onClick={pickUser}>
-                                    <img src="{circleW}" alt="" /></button>
+                                    <img src={circleW} alt="circle" /></button>
                             </div>
                         </div>
 
