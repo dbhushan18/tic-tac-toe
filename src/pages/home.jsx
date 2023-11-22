@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import cross from "../assets/cross.png";
+import circle from "../assets/circle.png";
 import './home.scss'
 import { useNavigate } from 'react-router-dom';
 
@@ -71,8 +73,8 @@ function home() {
             <div className='main-container'>
                 <div className='mob-view'>
                     <div className='logo'>
-                        <img src="\src\assets\cross.png" alt="" />
-                        <img src="\src\assets\circle.png" alt="" />
+                        <img src={cross} alt="" />
+                        <img src={circle} alt="" />
                     </div>
                     <div className='head'>
                         <div className='pick-container'>
