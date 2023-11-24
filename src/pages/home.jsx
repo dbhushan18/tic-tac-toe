@@ -8,11 +8,9 @@ import circleW from "../assets/black_circle.png";
 import './home.scss'
 import { useNavigate } from 'react-router-dom';
 
-export let getvalue;
+let getvalue;
 
 function home() {
-    localStorage.clear();
-
     const [picked, setpicked] = useState("");
     const [copied, setCopied] = useState(false);
 
@@ -22,6 +20,7 @@ function home() {
             setpicked(getvalue)
         }
     }
+    localStorage.setItem("picked", JSON.stringify(picked))
 
     const navigate = useNavigate();
 
