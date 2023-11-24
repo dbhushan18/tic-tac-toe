@@ -4,6 +4,7 @@ import cross from "../assets/cross.png";
 import circle from "../assets/circle.png";
 import smallcross from '../assets/cross_small.png';
 import smallcircle from '../assets/circle_small.svg';
+import refresh from '../assets/refresh.png'
 import Board from "./game_area";
 import Square from "./Square";
 import React from 'react';
@@ -275,7 +276,7 @@ function game() {
             </div>
             <div className="refresh">
               <div>
-                <button id='refr' onClick={() => { toggleModal() }}><img src="\src\assets\refresh.png" alt="" /></button>
+                <button id='refr' onClick={() => { toggleModal() }}><img src={refresh} alt="" /></button>
               </div>
             </div>
           </div>
