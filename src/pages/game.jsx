@@ -1,11 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import './game.scss';
-import { getvalue } from './home';
 import cross from "../assets/cross.png";
 import circle from "../assets/circle.png";
 import smallcross from '../assets/cross_small.png';
 import smallcircle from '../assets/circle_small.svg';
-import refresh from "../assets/refresh.png"
 import Board from "./game_area";
 import Square from "./Square";
 import React from 'react';
@@ -14,11 +12,12 @@ import { useNavigate } from 'react-router-dom';
 
 function game() {
   ///// ** main game ** //////
-  // const [flag, setflag] = useState(false);
-  let pickvalue = getvalue;
+  const [flag, setflag] = useState(false);
+  let pickvalue;
+  pickvalue = JSON.parse(localStorage.getItem("picked"))
   let symboluser, symbolcpu;
   let othervalue;
-  if (pickvalue == 'circle' ) {
+  if (pickvalue == 'circle') {
     pickvalue = <view><img src={smallcircle} /></view>
     symboluser = 'O'
     symbolcpu = 'X'
@@ -63,12 +62,12 @@ function game() {
 
   const initialized = useRef(false);
 
-  // const changeturnimage = () => {
-  //   if (flag === false)
-  //     return pickvalue;
-  //   else
-  //     return othervalue;
-  // }
+  const changeturnimage = () => {
+    if (flag === false)
+      return pickvalue;
+    else
+      return othervalue;
+  }
 
   useEffect(() => {
 
@@ -109,7 +108,7 @@ function game() {
         setSquares([...newSquares]);
       };
       if (isComputerTurn) {
-        // setflag(true)
+        setflag(true)
         const winingLines = linesThatAre('O', 'O', null);
         if (winingLines.length > 0) {
           const winIndex = winingLines[0].filter(index => squares[index] === null)[0];
@@ -133,7 +132,7 @@ function game() {
         const randomIndex = emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
         putComputerAt(randomIndex);
       }
-      // setflag(false)
+      setflag(false)
     })
   }, [squares]);
 
@@ -167,7 +166,7 @@ function game() {
 
   const won = (winner) => {
     setlock(true);
-    // setflag(false);
+    setflag(false);
     if (winner === symboluser) {
       setusercount(++usercount)
       winModal();
@@ -240,6 +239,10 @@ function game() {
 
   ////*** navigate ***//////
   const navigate = useNavigate();
+  const navigateto = () => {
+    localStorage.clear();
+    navigate('/')
+  }
 
   function refreshPage() {
     window.location.reload(false);
@@ -268,11 +271,11 @@ function game() {
               <div><img src={circle} alt="" /></div>
             </div>
             <div className="pick">
-              <div className='turn'>{pickvalue}<span>&nbsp;TURN</span> </div>
+              <div className='turn'>{changeturnimage()}<span>&nbsp;TURN</span> </div>
             </div>
             <div className="refresh">
               <div>
-                <button id='refr' onClick={() => { toggleModal() }}><img src={refresh} alt="" /></button>
+                <button id='refr' onClick={() => { toggleModal() }}><img src="\src\assets\refresh.png" alt="" /></button>
               </div>
             </div>
           </div>
@@ -309,7 +312,7 @@ function game() {
             <h2 id='confirmation'>Do you want to quit?</h2>
             <div className='btn'>
               <button className='play-agn' onClick={() => resetCnt()}>PLAY AGAIN</button>
-              <button className='qt' onClick={() => navigate('/')}>QUIT</button>
+              <button className='qt' onClick={() => navigateto()}>QUIT</button>
             </div>
           </div>
         </div>
@@ -332,11 +335,14 @@ function game() {
               </>
             )}
             {winner == "tie" && (
+              <>
               <h2 className='result-text'>TIE!</h2>
+              <h2 className='tie-text'>  ARE YOU CHALLENGING ME AGAIN??</h2>
+              </>
             )
             }
             <div className='btn'>
-              <button className='qt1' onClick={() => navigate('/')}>QUIT</button>
+              <button className='qt1' onClick={() => navigateto()}>QUIT</button>
               <button className='next-round' onClick={() => reset()}>NEXT ROUND</button>
             </div>
           </div>
