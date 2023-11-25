@@ -217,7 +217,7 @@ function game() {
   let [quote, setquote] = useState('It is better to fail in originality than to succeed in imitation');
   let [countq, setcountq] = useState(1);
 
-  const MINUTE = 60000;
+  const MINUTE = 30000;
 
   useEffect(() => {
     const interval = setInterval(() => {
